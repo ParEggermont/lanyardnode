@@ -2,6 +2,9 @@ const { join } = require('path');
 
 const config = require('config');
 const knex = require('knex');
+const sql = require('mssql')
+
+const pool = new sql.ConnectionPool(config.get('database'))
 
 const { getLogger } = require('../core/logging');
 
@@ -13,7 +16,8 @@ const DATABASE_NAME = config.get('database.name');
 const DATABASE_HOST = config.get('database.host');
 const DATABASE_PORT = config.get('database.port');
 const DATABASE_USERNAME = config.get('database.username');
-const DATABASE_PASSWORD = config.get('database.password');
+const DATABASE_PASSWORD = config.get('database.password'); 
+
 
 let knexInstance;
 
@@ -40,6 +44,9 @@ async function initializeData() {
       user: DATABASE_USERNAME,
       password: DATABASE_PASSWORD,
       insecureAuth: isDevelopment,
+      options : {
+        encrypt: true,
+      }
     },
     debug: isDevelopment,
     log: {
@@ -50,13 +57,6 @@ async function initializeData() {
         method,
         alternative,
       }),
-    },
-    migrations: {
-      tableName: 'knex_meta',
-      directory: join('src', 'data', 'migrations'),
-    },
-    seeds: {
-      directory: join('src', 'data', 'seeds'),
     },
   };
 

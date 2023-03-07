@@ -1,5 +1,5 @@
 module.exports = {
-  port: 8000,
+  port: 9000,
   log: {
     level: 'silly',
     disabled: false,
@@ -9,9 +9,12 @@ module.exports = {
     maxAge: 3 * 60 * 60,
   },
   database: {
-    client: 'mysql2',
-    host: 'localhost',
-    port: 3306,
-    name: 'qr_codes',
+    client: 'mssql',
+    host: 'lanyard.database.windows.net',
+    name: 'lanyard',
+    port: 1433,
+    options:{
+      encrypt: true,
+    }
   },
 };

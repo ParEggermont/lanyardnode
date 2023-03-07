@@ -37,11 +37,14 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa2-swagger-ui": "^5.6.0",
+    "mssql": "^9.1.1",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
     "node-emoji": "^1.11.0",
     "serialize-error": "8.1.0",
     "supertest": "^6.1.6",
     "swagger-jsdoc": "^6.2.5",
+    "tedious": "^15.1.3",
     "winston": "^3.3.3"
   },
   "devDependencies": {
