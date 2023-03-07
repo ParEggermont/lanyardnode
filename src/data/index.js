@@ -2,9 +2,6 @@ const { join } = require('path');
 
 const config = require('config');
 const knex = require('knex');
-const sql = require('mssql')
-
-const pool = new sql.ConnectionPool(config.get('database'))
 
 const { getLogger } = require('../core/logging');
 
@@ -40,7 +37,7 @@ async function initializeData() {
     client: DATABASE_CLIENT,
     connection: {
       host: DATABASE_HOST,
-      port: DATABASE_PORT,
+      port: 1433,
       user: DATABASE_USERNAME,
       password: DATABASE_PASSWORD,
       insecureAuth: isDevelopment,
@@ -58,6 +55,9 @@ async function initializeData() {
         alternative,
       }),
     },
+    options : {
+      encrypt: true,
+    }
   };
 
   knexInstance = knex(knexOptions);
